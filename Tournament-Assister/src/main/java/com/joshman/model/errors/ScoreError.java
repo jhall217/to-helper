@@ -7,7 +7,7 @@ public enum ScoreError {
 
 	private final String value;
 
-	private ScoreError(String value) {
+	ScoreError(String value) {
 		this.value = value;
 	}
 

@@ -5,7 +5,7 @@ public enum PlayerError {
 
 	private final String value;
 
-	private PlayerError(String value) {
+	PlayerError(String value) {
 		this.value = value;
 	}
 

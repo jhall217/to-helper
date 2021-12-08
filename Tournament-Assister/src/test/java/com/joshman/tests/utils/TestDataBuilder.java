@@ -1,10 +1,6 @@
 package com.joshman.tests.utils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import com.joshman.model.Player;
 import com.joshman.model.Round;
@@ -13,71 +9,68 @@ import com.joshman.model.Tournament;
 
 public class TestDataBuilder {
 
-	private static String playername = UUID.randomUUID().toString();
+	private static final String playerName = UUID.randomUUID().toString();
 
 	public Round populateRound() {
 
-		return new Round(populateTables(), 1);
+		return new Round(1L,populateTables(), 1);
 
 	}
 
 	public List<Table> populateTables() {
 
-		Table table1 = populdateTable();
-		Table table2 = populdateTable();
+		Table table1 = populateTable();
+		Table table2 = populateTable();
 
-		List<Table> tables = new ArrayList<Table>();
+		List<Table> tables = new ArrayList<>();
 		tables.add(table1);
 		tables.add(table2);
 
 		return tables;
 	}
 
-	public Table populdateTable() {
-		return new Table(1, populdatePlayers());
+	public Table populateTable() {
+		return new Table(1, populatePlayers());
 	}
 
-	public Set<Player> populdatePlayers() {
+	public Set<Player> populatePlayers() {
 
-		Set<Player> players = new HashSet<Player>();
-		players.add(populdatePlayer());
-		players.add(populdatePlayer());
+		Set<Player> players = new HashSet<>();
+		players.add(populatePlayer());
+		players.add(populatePlayer());
 
 		return players;
 	}
 
-	public Player populdatePlayer() {
-		return new Player(playername, String.valueOf(UUID.randomUUID()));
+	public Player populatePlayer() {
+		return new Player(playerName, String.valueOf(UUID.randomUUID()));
 	}
 
 	public Round populateInvalidRound() {
 
-		List<Table> tables = new ArrayList<Table>();
-		Set<Player> players = new HashSet<Player>();
+		List<Table> tables = new ArrayList<>();
 
-		Player player = new Player(playername, null);
-		players.add(player);
-		players.add(player);
-		players.add(player);
-		Table table = new Table(0, players);
+		Player player = new Player(playerName, null);
+
+		Table table = new Table(0, new HashSet<>(Arrays.asList(player, player, player)));
 		tables.add(table);
 
-		return new Round(tables, 0);
+		return new Round(1L, tables, 0);
 
 	}
 
 	public Tournament invalidTournament() {
-		List<Round> rounds = new ArrayList<Round>();
+		List<Round> rounds = new ArrayList<>();
 		rounds.add(populateRound());
 		rounds.add(populateRound());
-		return new Tournament(populdatePlayers(), rounds);
+		return new Tournament(populatePlayers(), rounds);
 	}
 
 	public Tournament populateTournament() {
-		List<Round> rounds = new ArrayList<Round>();
+		List<Round> rounds = new ArrayList<>();
 		rounds.add(populateRound());
 		rounds.add(populateRound());
 		rounds.add(populateRound());
-		return new Tournament(populdatePlayers(), rounds);
+		return new Tournament(populatePlayers(), rounds);
 	}
 }

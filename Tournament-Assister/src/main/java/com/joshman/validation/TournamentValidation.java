@@ -10,18 +10,17 @@ import com.joshman.model.errors.TournamentError;
 
 public class TournamentValidation {
 
-	public static void validateTournament(Tournament tournament) {
+    public static void validateTournament(Tournament tournament) {
 
-		Assert.assertNotNull(TournamentError.TOURNAMENT_NULL.getMessage(),
-				tournament);
-		List<Round> rounds = tournament.getRounds();
+        Assert.assertNotNull(TournamentError.TOURNAMENT_NULL.getMessage(),
+                tournament);
+        List<Round> rounds = tournament.getRounds();
 
-		Assert.assertTrue(TournamentError.INVALID_ROUNDS.getMessage(),
-				rounds.size() > 2);
-		for (Round round : rounds) {
-			RoundValidation.validateRound(round);
-		}
+        Assert.assertTrue(TournamentError.INVALID_ROUNDS.getMessage(),
+                rounds.size() > 2);
 
-	}
+        rounds.forEach(RoundValidation::validateRound);
+
+    }
 
 }

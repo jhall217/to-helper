@@ -1,11 +1,11 @@
 package com.joshman.model.errors;
 
 public enum RoundError {
-	 INCORRECT_PLAYER_NUMBERS("Table requires 2 playesr"), MINIMUM_TABLES_REQUIRED("Round requires 2 or more tables");
+	 INCORRECT_PLAYER_NUMBERS("Table requires 2 players"), MINIMUM_TABLES_REQUIRED("Round requires 2 or more tables");
 
 	private final String value;
 
-	private RoundError(String value) {
+	RoundError(String value) {
 		this.value = value;
 	}
 

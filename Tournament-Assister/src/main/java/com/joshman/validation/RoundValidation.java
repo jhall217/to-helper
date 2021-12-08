@@ -1,11 +1,9 @@
 package com.joshman.validation;
 
-import org.junit.Assert;
-
-import com.joshman.model.Player;
 import com.joshman.model.Round;
 import com.joshman.model.Table;
 import com.joshman.model.errors.RoundError;
+import org.junit.Assert;
 
 public class RoundValidation {
 
@@ -13,20 +11,13 @@ public class RoundValidation {
 
 		Assert.assertTrue(RoundError.MINIMUM_TABLES_REQUIRED.getMessage(),
 				round.getTables().size() > 1);
-
-		for (Table table : round.getTables()) {
-			validateTables(table);
-		}
+		round.getTables().forEach(RoundValidation::validateTable);
 
 	}
 
-	private static void validateTables(Table table) {
-		Assert.assertTrue(RoundError.INCORRECT_PLAYER_NUMBERS.getMessage(),
-				table.getPlayers().size() == 2);
-
-		for (Player player : table.getPlayers()) {
-			PlayerValidation.validatePlayer(player);
-		}
+	private static void validateTable(Table table) {
+		Assert.assertEquals(RoundError.INCORRECT_PLAYER_NUMBERS.getMessage(), 2, table.getPlayers().size());
+		table.getPlayers().forEach(PlayerValidation::validatePlayer);
 	}
 
 }

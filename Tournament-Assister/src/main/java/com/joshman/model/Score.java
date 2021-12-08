@@ -1,69 +1,46 @@
 package com.joshman.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Score {
 
-	private PrimaryScore primaryScore;
-	private SecondaryScore secondaryScore;
-	private int tertiaryScore;
+    private PrimaryScore primaryScore;
+    private SecondaryScore secondaryScore;
+    private int tertiaryScore;
 
-	public Score(PrimaryScore primary, SecondaryScore secondary, int tertiary) {
-		this.primaryScore = primary;
-		this.secondaryScore = secondary;
-		this.tertiaryScore = tertiary;
-	}
+    public enum PrimaryScore {
+        Win(10), Draw(5), Loss(2);
 
-	public int getTertiaryScore() {
-		return tertiaryScore;
-	}
+        private final int value;
 
-	public void setTertiaryScore(int tertiaryScore) {
-		this.tertiaryScore = tertiaryScore;
-	}
+        PrimaryScore(int value) {
+            this.value = value;
+        }
 
-	public void setPrimaryScore(PrimaryScore primaryScore) {
-		this.primaryScore = primaryScore;
-	}
+        public int getValue() {
+            return value;
+        }
 
-	public PrimaryScore getPrimaryScore() {
-		return primaryScore;
-	}
+    }
 
-	public void setSecondary(SecondaryScore secondaryScore) {
-		this.secondaryScore = secondaryScore;
-	}
+    public enum SecondaryScore {
+        Win(5), Draw(2), Loss(0);
 
-	public SecondaryScore getSecondaryScore() {
-		return secondaryScore;
-	}
+        private final int value;
 
-	public static enum PrimaryScore {
-		Win(10), Draw(5), Loss(2);
+        SecondaryScore(int value) {
+            this.value = value;
+        }
 
-		private final int value;
+        public int getValue() {
+            return value;
+        }
 
-		private PrimaryScore(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return value;
-		}
-
-	}
-
-	public static enum SecondaryScore {
-		Win(5), Draw(2), Loss(0);
-
-		private final int value;
-
-		private SecondaryScore(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return value;
-		}
-
-	}
+    }
 
 }

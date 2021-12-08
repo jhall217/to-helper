@@ -5,7 +5,7 @@ public enum TournamentError {
 
 	private final String value;
 
-	private TournamentError(String value) {
+	TournamentError(String value) {
 		this.value = value;
 	}
 

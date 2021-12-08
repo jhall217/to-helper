@@ -26,7 +26,6 @@ public class ScoreValidation {
 	}
 
 	private void validateTertiaryScore(int tertiaryScore) {
-		Assert.assertNotNull(ScoreError.TERTIARY_SCORE_REQUIRED.getMessage(),tertiaryScore);
 		Assert.assertTrue(ScoreError.TERTIARY_SCORE_GREATER_THAN_ALLOWED.getMessage(),tertiaryScore < 5);
 	}
 

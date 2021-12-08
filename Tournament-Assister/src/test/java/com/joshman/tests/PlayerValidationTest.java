@@ -1,35 +1,26 @@
 package com.joshman.tests;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.joshman.model.Player;
 import com.joshman.validation.PlayerValidation;
+import org.junit.Test;
 
 public class PlayerValidationTest {
 
-	PlayerValidation playerValidation = new PlayerValidation();
+    @Test
+    public void testValidationPlayer() {
 
-	@Test
-	public void testValidationPlayer() {
+        Player player = new Player("Player", "Name");
+        PlayerValidation.validatePlayer(player);
 
-		Player player = new Player("Player", null);
-		PlayerValidation.validatePlayer(player);
+    }
 
-	}
+    @Test(expected = AssertionError.class)
+    public void testInvalidPlayer() {
 
-	@Test
-	public void testInvalidPlayer() {
+        Player player = new Player("", null);
+        PlayerValidation.validatePlayer(player);
 
-		Player player = new Player("", null);
-		try {
-			PlayerValidation.validatePlayer(player);
-			Assert.fail("Service was suppose to throw exception");
-		} catch (AssertionError e) {
-
-		}
-
-	}
+    }
 
 
 }
